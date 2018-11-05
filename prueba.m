@@ -22,7 +22,7 @@ function varargout = prueba(varargin)
 
 % Edit the above text to modify the response to help prueba
 
-% Last Modified by GUIDE v2.5 05-Nov-2018 09:39:11
+% Last Modified by GUIDE v2.5 05-Nov-2018 10:17:54
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -126,3 +126,28 @@ function funciondecrecergrafica()
     xyzaxes=xyzaxes-1;
     xlim([-5-xyzaxes 5+xyzaxes]);
     ylim([-15-xyzaxes 15+xyzaxes])  
+
+
+% --- Executes on button press in PruebadeRotar.
+function PruebadeRotar_Callback(hObject, eventdata, handles)
+funcionpruebaderotar ()
+% hObject    handle to PruebadeRotar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+function funcionpruebaderotar()
+    global t;
+    t = 2;
+    cla
+    x=-t:0.001:t;
+    x1=-t:0.001:t;
+    f=sqrt(1-(abs(x)-1).^2);
+    g=acos(1-abs(x1))-pi;
+    xr=x*cos(-45)-f*sin(-45);
+    fr=x*sin(-45)+f*cos(-45);
+    x1r=x1*cos(-45)-g*sin(-45);
+    gr=x1*sin(-45)+g*cos(-45);
+    plot(xr,fr)
+    hold on
+    plot(x1r,gr)
+
+    
