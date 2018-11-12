@@ -22,7 +22,7 @@ function varargout = prueba(varargin)
 
 % Edit the above text to modify the response to help prueba
 
-% Last Modified by GUIDE v2.5 12-Nov-2013 10:27:48
+% Last Modified by GUIDE v2.5 12-Nov-2013 13:37:27
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,9 +73,13 @@ x=-t:0.001:t;
 x1=-t:0.001:t;
 f=sqrt(1-(abs(x)-1).^2);
 g=acos(1-abs(x1))-pi;
+f=f*t;
+g=g*t;
 plot(x,f)
 hold on
 plot(x1,g)
+xlim([-5 5])
+ylim([-10 10])
 
 
 
@@ -92,7 +96,6 @@ Original()
 global t;
 global x1;
 global x;
-global xyzaxes;
 global f;
 global g;
 plot(x,f)
@@ -101,32 +104,32 @@ plot(x1,g)
 xlim([-5 5])
 ylim([-10 10])
 
-% --- Executes on button press in P1.
-function P1_Callback(hObject, eventdata, handles)
-Crecer()
-% hObject    handle to P1 (see GCBO)
+% --- Executes on button press in Crecer.
+function Crecer_Callback(hObject, eventdata, handles)
+% hObject    handle to Crecer (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-function Crecer()
-    global t;
-    t = t*1.2;
+    global x1;
+    global x;
+    global f;
+    global g;
+    ex=1;
+    ex = ex*1.1;
     cla
-    x=-t:0.001:t;
-    f=sqrt(1-(abs(x)-1).^2);
-    g=acos(1-abs(x))-pi;
-    plot(x,t*f);
-    plot(x,t*g);
+    f=f*ex;
+    g=g*ex;
+    x=x*ex;
+    x1=x1*ex;
+    plot(x,f);
+    plot(x1,g);
+    
 
 
 % --- Executes on button press in crecergrafica.
 function crecergrafica_Callback(hObject, eventdata, handles)
-funcioncrecergrafica()
 % hObject    handle to crecergrafica (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-function funcioncrecergrafica()
     global xyzaxes;
     xyzaxes=xyzaxes+1;
     xlim([-5-xyzaxes 5+xyzaxes]);
@@ -134,11 +137,9 @@ function funcioncrecergrafica()
 
 % --- Executes on button press in decrecergrafica.
 function decrecergrafica_Callback(hObject, eventdata, handles)
-funciondecrecergrafica()
 % hObject    handle to decrecergrafica (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-function funciondecrecergrafica()
     global xyzaxes;
     xyzaxes=xyzaxes-1;
     xlim([-5-xyzaxes 5+xyzaxes]);
@@ -147,22 +148,21 @@ function funciondecrecergrafica()
 
 % --- Executes on button press in PruebadeRotar.
 function PruebadeRotar_Callback(hObject, eventdata, handles)
-funcionpruebaderotar ()
 % hObject    handle to PruebadeRotar (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-function funcionpruebaderotar()
-    global t;
-    t = 2;
+    global x1;
+    global x;
+    global f;
+    global g;
+    global grados;
+    global gradosc;
+    gradosc=grados*180*3.14;
     cla
-    x=-t:0.001:t;
-    x1=-t:0.001:t;
-    f=sqrt(1-(abs(x)-1).^2);
-    g=acos(1-abs(x1))-pi;
-    xr=x*cos(-45)-f*sin(-45);
-    fr=x*sin(-45)+f*cos(-45);
-    x1r=x1*cos(-45)-g*sin(-45);
-    gr=x1*sin(-45)+g*cos(-45);
+    xr=x*cos(-gradosc)-f*sin(-gradosc);
+    fr=x*sin(-gradosc)+f*cos(-gradosc);
+    x1r=x1*cos(-gradosc)-g*sin(-gradosc);
+    gr=x1*sin(-gradosc)+g*cos(-gradosc);
     plot(xr,fr)
     hold on
     plot(x1r,gr)
@@ -211,3 +211,22 @@ function GradosaRotar_KeyPressFcn(hObject, eventdata, handles)
 %	Character: character interpretation of the key(s) that was pressed
 %	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
 % handles    structure with handles and user data (see GUIDATA)
+
+% --- Executes on button press in Decrecer.
+function Decrecer_Callback(hObject, eventdata, handles)
+% hObject    handle to Decrecer (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    global x1;
+    global x;
+    global f;
+    global g;
+    ex=1;
+    ex = ex*1.1;
+    cla
+    f=f/ex;
+    g=g/ex;
+    x=x/ex;
+    x1=x1/ex;
+    plot(x,f);
+    plot(x1,g);
