@@ -22,7 +22,7 @@ function varargout = prueba(varargin)
 
 % Edit the above text to modify the response to help prueba
 
-% Last Modified by GUIDE v2.5 05-Nov-2018 10:17:54
+% Last Modified by GUIDE v2.5 12-Nov-2013 10:27:48
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -60,6 +60,23 @@ guidata(hObject, handles);
 
 % UIWAIT makes prueba wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
+function Original()
+global t;
+global x1;
+global x;
+global xyzaxes;
+global f;
+global g;
+xyzaxes = 0;
+t = 2;
+x=-t:0.001:t;
+x1=-t:0.001:t;
+f=sqrt(1-(abs(x)-1).^2);
+g=acos(1-abs(x1))-pi;
+plot(x,f)
+hold on
+plot(x1,g)
+
 
 
 % --- Outputs from this function are returned to the command line.
@@ -71,19 +88,19 @@ function varargout = prueba_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
+Original()
 global t;
+global x1;
+global x;
 global xyzaxes;
-xyzaxes = 0;
-t = 2;
-x=-t:0.001:t;
-x1=-t:0.001:t;
-f=sqrt(1-(abs(x)-1).^2);
-g=acos(1-abs(x1))-pi;
+global f;
+global g;
 plot(x,f)
 hold on
 plot(x1,g)
 xlim([-5 5])
 ylim([-10 10])
+
 % --- Executes on button press in P1.
 function P1_Callback(hObject, eventdata, handles)
 Crecer()
@@ -151,3 +168,46 @@ function funcionpruebaderotar()
     plot(x1r,gr)
 
     
+
+
+% --- Executes on button press in RegresarAOriginal.
+function RegresarAOriginal_Callback(hObject, eventdata, handles)
+% hObject    handle to RegresarAOriginal (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+cla
+Original()
+
+
+% --- Executes on selection change in GradosaRotar.
+function GradosaRotar_Callback(hObject, eventdata, handles)
+% hObject    handle to GradosaRotar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns GradosaRotar contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from GradosaRotar
+global grados
+grados=get(hObject,'value')-1
+
+% --- Executes during object creation, after setting all properties.
+function GradosaRotar_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to GradosaRotar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on key press with focus on GradosaRotar and none of its controls.
+function GradosaRotar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to GradosaRotar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
