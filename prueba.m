@@ -160,13 +160,13 @@ function PruebadeRotar_Callback(hObject, eventdata, handles)
     gradosc=grados*(180/3.14);
     cla
     %x=x*cos(-gradosc)-f*sin(-gradosc);
-    %f=x*sin(-gradosc)+f*cos(-gradosc);
+    f=x*sin(-gradosc)+f*cos(-gradosc);
     %x1=x1*cos(-gradosc)-g*sin(-gradosc);
-    %g=x1*sin(-gradosc)+g*cos(-gradosc);
-    x = (x-f*tan(gradosc))*cos(gradosc);
-    f = f/cos(gradosc) + (x-f*tan(gradosc))*sin(gradosc);
-    x1 = (x1-g*tan(gradosc))*cos(gradosc);
-    g = g/cos(gradosc) + (x1-g*tan(gradosc))*sin(gradosc);
+    g=x1*sin(-gradosc)+g*cos(-gradosc);
+    %x = (x-f*tan(gradosc))*cos(gradosc);
+    %f = f/cos(gradosc) + (x-f*tan(gradosc))*sin(gradosc);
+    %x1 = (x1-g*tan(gradosc))*cos(gradosc);
+    %g = g/cos(gradosc) + (x1-g*tan(gradosc))*sin(gradosc);
     plot(x,f)
     hold on
     plot(x1,g)
