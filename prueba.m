@@ -22,7 +22,7 @@ function varargout = prueba(varargin)
 
 % Edit the above text to modify the response to help prueba
 
-% Last Modified by GUIDE v2.5 12-Nov-2013 13:37:27
+% Last Modified by GUIDE v2.5 12-Nov-2013 14:30:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -157,15 +157,19 @@ function PruebadeRotar_Callback(hObject, eventdata, handles)
     global g;
     global grados;
     global gradosc;
-    gradosc=grados*180*3.14;
+    gradosc=grados*(180/3.14);
     cla
-    xr=x*cos(-gradosc)-f*sin(-gradosc);
-    fr=x*sin(-gradosc)+f*cos(-gradosc);
-    x1r=x1*cos(-gradosc)-g*sin(-gradosc);
-    gr=x1*sin(-gradosc)+g*cos(-gradosc);
-    plot(xr,fr)
+    %x=x*cos(-gradosc)-f*sin(-gradosc);
+    %f=x*sin(-gradosc)+f*cos(-gradosc);
+    %x1=x1*cos(-gradosc)-g*sin(-gradosc);
+    %g=x1*sin(-gradosc)+g*cos(-gradosc);
+    x = (x-f*tan(gradosc))*cos(gradosc);
+    f = f/cos(gradosc) + (x-f*tan(gradosc))*sin(gradosc);
+    x1 = (x1-g*tan(gradosc))*cos(gradosc);
+    g = g/cos(gradosc) + (x1-g*tan(gradosc))*sin(gradosc);
+    plot(x,f)
     hold on
-    plot(x1r,gr)
+    plot(x1,g)
 
     
 
@@ -228,5 +232,67 @@ function Decrecer_Callback(hObject, eventdata, handles)
     g=g/ex;
     x=x/ex;
     x1=x1/ex;
+    plot(x,f);
+    plot(x1,g);
+
+
+% --- Executes on button press in DerechaGrafica.
+function DerechaGrafica_Callback(hObject, eventdata, handles)
+% hObject    handle to DerechaGrafica (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    global x1;
+    global x;
+    global g;
+    global f;
+    x1=x1+.1,
+    x=x+.1;
+    cla
+    plot(x,f);
+    plot(x1,g); 
+    
+% --- Executes on button press in IzquierdaGrafica.
+function IzquierdaGrafica_Callback(hObject, eventdata, handles)
+% hObject    handle to IzquierdaGrafica (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    global x1;
+    global x;
+    global g;
+    global f;
+    x1=x1-.1,
+    x=x-.1;
+    cla
+    plot(x,f);
+    plot(x1,g);
+
+
+% --- Executes on button press in ArribaDesplazar.
+function ArribaDesplazar_Callback(hObject, eventdata, handles)
+% hObject    handle to ArribaDesplazar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    global x1;
+    global x;
+    global g;
+    global f;
+    f=f+.1,
+    g=g+.1;
+    cla
+    plot(x,f);
+    plot(x1,g);
+
+% --- Executes on button press in AbajoDesplazar.
+function AbajoDesplazar_Callback(hObject, eventdata, handles)
+% hObject    handle to AbajoDesplazar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    global x1;
+    global x;
+    global g;
+    global f;
+    f=f-.1,
+    g=g-.1;
+    cla
     plot(x,f);
     plot(x1,g);
