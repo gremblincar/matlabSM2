@@ -81,8 +81,6 @@ plot(x1,g)
 xlim([-5 5])
 ylim([-10 10])
 
-
-
 % --- Outputs from this function are returned to the command line.
 function varargout = prueba_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
@@ -159,14 +157,20 @@ function PruebadeRotar_Callback(hObject, eventdata, handles)
     global gradosc;
     gradosc=grados*(180/3.14);
     cla
-    %x=x*cos(-gradosc)-f*sin(-gradosc);
-    f=x*sin(-gradosc)+f*cos(-gradosc);
-    %x1=x1*cos(-gradosc)-g*sin(-gradosc);
-    g=x1*sin(-gradosc)+g*cos(-gradosc);
-    %x = (x-f*tan(gradosc))*cos(gradosc);
-    %f = f/cos(gradosc) + (x-f*tan(gradosc))*sin(gradosc);
-    %x1 = (x1-g*tan(gradosc))*cos(gradosc);
-    %g = g/cos(gradosc) + (x1-g*tan(gradosc))*sin(gradosc);
+    %x=x*cos(-gradosc)-f*sin(-gradosc); NO SIRVE
+    %f=f*sin(-grados)+f*cos(-grados);
+    %x1=x1*cos(-gradosc)-g*sin(-gradosc); NO RIVE
+    %g=g*sin(-grados)+g*cos(-grados);
+    %x = (x-f*tan(gradosc))*cos(gradosc); NO SIRVE
+    %f = f/cos(grados) + (x-f*tan(grados))*sin(grados);
+    %x1 = (x1-g*tan(gradosc))*cos(gradosc); NO SIRVE
+    %g = g/cos(grados) + (x1-g*tan(grados))*sin(grados);
+   %x=x*cos(-45)-f*sin(-45);
+    %f=f*sin(-45)+x*cos(-45);
+    %x1=x1*cos(-45)-g*sin(-45);
+    %g=g*sin(-45)+x1*cos(-45);
+    f=-f;
+    g=-g;
     plot(x,f)
     hold on
     plot(x1,g)
