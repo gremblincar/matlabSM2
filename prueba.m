@@ -1,30 +1,5 @@
 function varargout = prueba(varargin)
-% PRUEBA MATLAB code for prueba.fig
-%      PRUEBA, by itself, creates a new PRUEBA or raises the existing
-%      singleton*.
-%
-%      H = PRUEBA returns the handle to a new PRUEBA or the handle to
-%      the existing singleton*.
-%
-%      PRUEBA('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in PRUEBA.M with the given input arguments.
-%
-%      PRUEBA('Property','Value',...) creates a new PRUEBA or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before prueba_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to prueba_OpeningFcn via varargin.
-%
-%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
-%      instance to run (singleton)".
-%
-% See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help prueba
-
-% Last Modified by GUIDE v2.5 12-Nov-2013 14:30:43
-
-% Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -300,3 +275,38 @@ function AbajoDesplazar_Callback(hObject, eventdata, handles)
     cla
     plot(x,f);
     plot(x1,g);
+
+
+% --- Executes on button press in AI.
+function AI_Callback(hObject, eventdata, handles)
+% hObject    handle to AI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+ArribaDesplazar_Callback()
+IzquierdaGrafica_Callback()
+
+
+% --- Executes on button press in DI.
+function DI_Callback(hObject, eventdata, handles)
+% hObject    handle to DI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+AbajoDesplazar_Callback()
+IzquierdaGrafica_Callback()
+
+
+% --- Executes on button press in AD.
+function AD_Callback(hObject, eventdata, handles)
+% hObject    handle to AD (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+ArribaDesplazar_Callback()
+DerechaGrafica_Callback()
+
+% --- Executes on button press in DD.
+function DD_Callback(hObject, eventdata, handles)
+% hObject    handle to DD (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+AbajoDesplazar_Callback()
+DerechaGrafica_Callback()
