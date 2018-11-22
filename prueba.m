@@ -33,8 +33,6 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
-% UIWAIT makes prueba wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
 function Original()
 global t;
 global x1;
@@ -56,16 +54,22 @@ plot(x1,g)
 xlim([-5 5])
 ylim([-10 10])
 
-% --- Outputs from this function are returned to the command line.
-function varargout = prueba_OutputFcn(hObject, eventdata, handles) 
-% varargout  cell array for returning output args (see VARARGOUT);
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Get default command line output from handles structure
+function varargout = prueba_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
 Original()
+global crece;
+global decre;
+global dere;
+global izq;
+global arrib;
+global abaj;
+crece=0;
+decre=0;
+dere=0;
+izq=0;
+arrib=0;
+abaj=0;
 global t;
 global x1;
 global x;
@@ -77,53 +81,33 @@ plot(x1,g)
 xlim([-5 5])
 ylim([-10 10])
 
-% --- Executes on button press in Crecer.
 function Crecer_Callback(hObject, eventdata, handles)
-% hObject    handle to Crecer (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
     global x1;
     global x;
     global f;
     global g;
-    ex=1;
-    ex = ex*1.1;
-    cla
+    global crece;
+    ex=1+(crece/10);
+    if crece~=0
     f=f*ex;
     g=g*ex;
     x=x*ex;
     x1=x1*ex;
-    plot(x,f);
-    plot(x1,g);
+    end
     
-
-
-% --- Executes on button press in crecergrafica.
 function crecergrafica_Callback(hObject, eventdata, handles)
-% hObject    handle to crecergrafica (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
     global xyzaxes;
     xyzaxes=xyzaxes+1;
     xlim([-5-xyzaxes 5+xyzaxes]);
     ylim([-15-xyzaxes 15+xyzaxes])
-
-% --- Executes on button press in decrecergrafica.
+    
 function decrecergrafica_Callback(hObject, eventdata, handles)
-% hObject    handle to decrecergrafica (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
     global xyzaxes;
     xyzaxes=xyzaxes-1;
     xlim([-5-xyzaxes 5+xyzaxes]);
     ylim([-15-xyzaxes 15+xyzaxes])  
 
-
-% --- Executes on button press in PruebadeRotar.
 function PruebadeRotar_Callback(hObject, eventdata, handles)
-% hObject    handle to PruebadeRotar (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
     global x1;
     global x;
     global f;
@@ -150,156 +134,91 @@ function PruebadeRotar_Callback(hObject, eventdata, handles)
     hold on
     plot(x1,g)
 
-    
-
-
-% --- Executes on button press in RegresarAOriginal.
 function RegresarAOriginal_Callback(hObject, eventdata, handles)
-% hObject    handle to RegresarAOriginal (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 cla
 Original()
 
 
-% --- Executes on selection change in GradosaRotar.
 function GradosaRotar_Callback(hObject, eventdata, handles)
-% hObject    handle to GradosaRotar (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns GradosaRotar contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from GradosaRotar
 global grados
 grados=get(hObject,'value')-1
 
-% --- Executes during object creation, after setting all properties.
 function GradosaRotar_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to GradosaRotar (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on key press with focus on GradosaRotar and none of its controls.
 function GradosaRotar_KeyPressFcn(hObject, eventdata, handles)
-% hObject    handle to GradosaRotar (see GCBO)
-% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
-%	Key: name of the key that was pressed, in lower case
-%	Character: character interpretation of the key(s) that was pressed
-%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
-% handles    structure with handles and user data (see GUIDATA)
 
-% --- Executes on button press in Decrecer.
 function Decrecer_Callback(hObject, eventdata, handles)
-% hObject    handle to Decrecer (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
     global x1;
     global x;
     global f;
     global g;
-    ex=1;
-    ex = ex*1.1;
-    cla
+    global decre;
+    ex=1+(decre/10);
+    if decre~=0
     f=f/ex;
     g=g/ex;
     x=x/ex;
     x1=x1/ex;
-    plot(x,f);
-    plot(x1,g);
+    end
 
 
-% --- Executes on button press in DerechaGrafica.
 function DerechaGrafica_Callback(hObject, eventdata, handles)
-% hObject    handle to DerechaGrafica (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
     global x1;
     global x;
-    global g;
-    global f;
-    x1=x1+.1,
-    x=x+.1;
-    cla
-    plot(x,f);
-    plot(x1,g); 
-    
-% --- Executes on button press in IzquierdaGrafica.
+    global dere;
+    ex=dere*.1;
+    if dere~=0
+    x1=x1+ex;
+    x=x+ex;
+    end
+
+
 function IzquierdaGrafica_Callback(hObject, eventdata, handles)
-% hObject    handle to IzquierdaGrafica (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
     global x1;
     global x;
-    global g;
-    global f;
-    x1=x1-.1,
-    x=x-.1;
-    cla
-    plot(x,f);
-    plot(x1,g);
+    global izq;
+    ex=izq*.1;
+    if izq~=0
+    x1=x1-ex;
+    x=x-ex;
+    end
 
-
-% --- Executes on button press in ArribaDesplazar.
 function ArribaDesplazar_Callback(hObject, eventdata, handles)
-% hObject    handle to ArribaDesplazar (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-    global x1;
-    global x;
     global g;
     global f;
-    f=f+.1,
-    g=g+.1;
-    cla
-    plot(x,f);
-    plot(x1,g);
+    global arrib;
+    ex=arrib*.1;
+    if arrib~=0
+    f=f+ex;
+    g=g+ex;
+    end
 
-% --- Executes on button press in AbajoDesplazar.
+
 function AbajoDesplazar_Callback(hObject, eventdata, handles)
-% hObject    handle to AbajoDesplazar (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-    global x1;
-    global x;
     global g;
     global f;
-    f=f-.1,
-    g=g-.1;
-    cla
-    plot(x,f);
-    plot(x1,g);
+    global abaj;
+    ex=abaj*.1;
+    if abaj~=0
+    f=f-ex;
+    g=g-ex;
+    end
 
 
-% --- Executes on button press in AI.
 function AI_Callback(hObject, eventdata, handles)
-% hObject    handle to AI (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 ArribaDesplazar_Callback()
 IzquierdaGrafica_Callback()
 
 
-% --- Executes on button press in DI.
 function DI_Callback(hObject, eventdata, handles)
-% hObject    handle to DI (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 AbajoDesplazar_Callback()
 IzquierdaGrafica_Callback()
 
-
-% --- Executes on button press in AD.
 function AD_Callback(hObject, eventdata, handles)
-% hObject    handle to AD (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 ArribaDesplazar_Callback()
 DerechaGrafica_Callback()
 
@@ -310,3 +229,192 @@ function DD_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 AbajoDesplazar_Callback()
 DerechaGrafica_Callback()
+
+
+% --- Executes on selection change in tagizq.
+function tagizq_Callback(hObject, eventdata, handles)
+% hObject    handle to tagizq (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns tagizq contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from tagizq
+global izq
+izq=get(hObject,'value')-1
+
+
+% --- Executes during object creation, after setting all properties.
+function tagizq_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tagizq (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in tagder.
+function tagder_Callback(hObject, eventdata, handles)
+% hObject    handle to tagder (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns tagder contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from tagder
+global dere
+dere=get(hObject,'value')-1
+
+
+% --- Executes during object creation, after setting all properties.
+function tagder_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tagder (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in tagabj.
+function tagabj_Callback(hObject, eventdata, handles)
+% hObject    handle to tagabj (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns tagabj contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from tagabj
+global abaj
+abaj=get(hObject,'value')-1
+
+
+% --- Executes during object creation, after setting all properties.
+function tagabj_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tagabj (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in tagarr.
+function tagarr_Callback(hObject, eventdata, handles)
+% hObject    handle to tagarr (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns tagarr contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from tagarr
+global arrib
+arrib=get(hObject,'value')-1
+
+
+% --- Executes during object creation, after setting all properties.
+function tagarr_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tagarr (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in tagcrec.
+function tagcrec_Callback(hObject, eventdata, handles)
+% hObject    handle to tagcrec (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns tagcrec contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from tagcrec
+global crece
+crece=get(hObject,'value')-1
+
+
+% --- Executes during object creation, after setting all properties.
+function tagcrec_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tagcrec (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in tagdecr.
+function tagdecr_Callback(hObject, eventdata, handles)
+% hObject    handle to tagdecr (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns tagdecr contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from tagdecr
+global decre
+decre=get(hObject,'value')-1
+
+% --- Executes during object creation, after setting all properties.
+function tagdecr_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tagdecr (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in HacerTodo.
+function HacerTodo_Callback(hObject, eventdata, handles)
+% hObject    handle to HacerTodo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global crece;
+global decre;
+global dere;
+global izq;
+global arrib;
+global abaj;
+
+if abaj~=0
+AbajoDesplazar_Callback()
+end
+if dere~=0
+DerechaGrafica_Callback()
+end
+if arrib~=0
+ArribaDesplazar_Callback()
+end
+if izq~=0
+IzquierdaGrafica_Callback()
+end
+if decre~=0
+Decrecer_Callback()
+end
+if crece~=0
+Crecer_Callback()
+end
+global x;
+global x1;
+global f;
+global g;
+cla
+plot(x,f)
+hold on
+plot(x1,g)
